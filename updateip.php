@@ -30,9 +30,9 @@ $cf_api = getenv('CF_API');
 $dns_entry = getenv('CF_HOST');
 
 if (getenv('CF_PROXY') == 'true') {
-    $cf_proxy = true;    
+    $cf_proxy = 1;    
 } else {
-    $cf_proxy = false; 
+    $cf_proxy = 0; 
 }
 
 if (!isset($cf_email, $cf_api, $dns_entry)) {
@@ -104,9 +104,8 @@ if (!isset($cf_email, $cf_api, $dns_entry)) {
                                        'type' => 'A',
                                        'name' => $dns_entry,
                                        'content' => $ip_api,
-                                       'service_mode' => 0,
-                                       'ttl' => 120,
-                                       'proxied' => $cf_proxy ));
+                                       'service_mode' => $cf_proxy,
+                                       'ttl' => 120 ));
                     }
                 } else {
                     tolog ('Invalid IP received from API');
