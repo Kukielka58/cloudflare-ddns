@@ -101,7 +101,7 @@ if (!isset($cf_email, $cf_api, $dns_entry)) {
                         api_post(array('a' => 'rec_edit',
                                        'id' => $record_id,
                                        'z' => $zone_name,
-                                       'type' => 'A',
+                                       'type' => 'AAAA',
                                        'name' => $dns_entry,
                                        'content' => $ip_api,
                                        'service_mode' => $cf_proxy,
