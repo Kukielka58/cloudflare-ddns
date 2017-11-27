@@ -92,7 +92,7 @@ if (!isset($cf_email, $cf_api, $dns_entry)) {
             tolog ('Beginning loop to compare external IP and DNS entry');
             while (true) {
                 # Loop DNS resolve and IP compare
-                $ip_api = trim(file_get_contents('http://icanhazip.com/'));
+                $ip_api = trim(file_get_contents('https://canihazip.com/s'));
 
                 if (filter_var($ip_api, FILTER_VALIDATE_IP)) {
                     if (gethostbyname($dns_entry) !== $ip_api) {
@@ -101,7 +101,7 @@ if (!isset($cf_email, $cf_api, $dns_entry)) {
                         api_post(array('a' => 'rec_edit',
                                        'id' => $record_id,
                                        'z' => $zone_name,
-                                       'type' => 'AAAA',
+                                       'type' => 'A',
                                        'name' => $dns_entry,
                                        'content' => $ip_api,
                                        'service_mode' => $cf_proxy,
